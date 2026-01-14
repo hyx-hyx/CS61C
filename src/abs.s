@@ -12,8 +12,11 @@ abs:
     # Prologue
 
     # return 0
-    mv a0, zero
-
+     # branch if positive
+    bge a0, x0, done
+    # invert a if negative
+    sub a0, x0, a0
+done:
     # Epilogue
 
     ret
