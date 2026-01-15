@@ -20,25 +20,34 @@
 dot:
 
     # Prologue
-
+    addi sp,sp,-4
+    sw ra,0(sp)
 
 loop_start:
+    addi t0,x0,4
+    add t6,x0,x0 
+    add t1,x0,x0
+loop_continue:
+    bge t1,a2,loop_end
 
+    mul t2,t1,a3   # v0
+    mul t2,t2,t0
+    mul t3,t1,a4   # v1
+    mul t3,t3,t0
+    
+    add t2,a0,t2   # get actual address of v0[i]
+    add t3,a1,t3   # get actual address of v1[i]
+    lw t2,0(t2)    # get v0's value 
+    lw t3,0(t3)    # get v1's value
+    mul t5,t2,t3   # mul
+    add t6,t6,t5   # sum
 
-
-
-
-
-
-
-
-
-
+    addi t1,t1,1
+    j loop_continue
 
 loop_end:
-
-
+    mv a0,t6
     # Epilogue
-
-    
+    lw ra 0(sp)
+    addi sp,sp,4
     ret
