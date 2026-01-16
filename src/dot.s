@@ -18,7 +18,19 @@
 #   this function terminates the program with error code 76.
 # =======================================================
 dot:
-
+    blt a2,1,error_handler1
+    blt a3,1,error_handler2
+    blt a4,1,error_handler2
+error_handler1:
+    li a1,75
+    j error
+error_handler2:
+    li a1,76
+    j error
+error:
+    li a0,17
+    ecall
+    
     # Prologue
     addi sp,sp,-4
     sw ra,0(sp)

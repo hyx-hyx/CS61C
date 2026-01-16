@@ -13,6 +13,12 @@
 #   this function terminates the program with error code 78.
 # ==============================================================================
 relu:
+    bge a1,1,begin
+    li a1,78
+    li a0,17
+    ecall
+    
+begin:
     # Prologue
     addi sp,sp, -4
     sw ra 0(sp)

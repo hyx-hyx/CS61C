@@ -64,6 +64,7 @@ loop_continue:
     add t6,t6,a0
     lw t6,0(t6)
 
+    dot
     
 
 
