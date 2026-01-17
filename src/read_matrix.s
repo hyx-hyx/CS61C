@@ -41,7 +41,7 @@ read_matrix:
     mv s1,a1        # save int* address of row
     mv s2,a2        # save int* address of column
 
-    # la a0,filename (debug)
+    # la a0,filename
     li a1,0
     call fopen
 
@@ -89,6 +89,8 @@ call_fread_again:
     call fread  
 
     beq s2,a0,call_fclose # error_check
+    mv a0,s1
+    call free             # free memory
     li a0,29
     j exit
 
@@ -110,5 +112,7 @@ call_fclose:
     jr ra
 
 error_fclose:
+    mv a0,s1
+    call free             # free memory
     li a0,28
     j exit
