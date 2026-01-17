@@ -28,4 +28,8 @@ if [[ "$PROGRAM" == "all" || "$PROGRAM" == "venus" ]]; then
   [[ -f venus.jar ]] && venus_time_cond_flag="-z venus.jar"
   curl $venus_time_cond_flag -L "https://inst.eecs.berkeley.edu/~cs61c/$SEMESTER/tools/venus-latest.jar" -o venus.jar
   echo "Downloaded Venus!"
+<<<<<<< HEAD
 fi
+=======
+fi
+>>>>>>> 7981a1b2a4150c44a0594279fa7d98a11977355b

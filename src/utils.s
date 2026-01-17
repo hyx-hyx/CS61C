@@ -6,7 +6,10 @@
 #define c_print_str 4
 #define c_atoi 5
 #define c_sbrk 9
+<<<<<<< HEAD
 #define c_exit 10
+=======
+>>>>>>> 7981a1b2a4150c44a0594279fa7d98a11977355b
 #define c_print_char 11
 #define c_openFile 13
 #define c_readFile 14
@@ -19,7 +22,11 @@
 #define c_printHex 34
 
 # ecall wrappers
+<<<<<<< HEAD
 .globl print_int, print_str, atoi, sbrk, exit, print_char, fopen, fread, fwrite, fclose, exit2, fflush, ferror, print_hex
+=======
+.globl print_int, print_str, atoi, sbrk, exit, print_char, fopen, fread, fwrite, fclose, fflush, ferror, print_hex
+>>>>>>> 7981a1b2a4150c44a0594279fa7d98a11977355b
 
 # helper functions
 .globl file_error, print_int_array, malloc, free, print_num_alloc_blocks, num_alloc_blocks
@@ -27,28 +34,55 @@
 # unittest helper functions
 .globl compare_int_array
 
+<<<<<<< HEAD
 .data
 error_string: .string "This library file should not be directly called!"
+=======
+# Calling Convention Functions
+.globl randomizeCallerSavedRegs, randomizeCallerSavedRegsBesidesA0, randomizeCalleeSavedRegs, checkCalleeSavedRegs, randomizeCalleeSavedRegs2, checkCalleeSavedRegs2
+
+.data
+static_space_for_sp: .word 0 0 0
+error_string: .string "This library file should not be directly called!"
+static_space_for_sp2: .word 0 0 0
+error_string2: .string "This library file should not be directly called!"
+
+>>>>>>> 7981a1b2a4150c44a0594279fa7d98a11977355b
 
 .text
 # Exits if you run this file
 main:
+<<<<<<< HEAD
     la a1 error_string
     jal print_str
     li a1 1
     jal exit2
+=======
+    la a0 error_string
+    jal print_str
+    li a0 1
+    jal exit
+>>>>>>> 7981a1b2a4150c44a0594279fa7d98a11977355b
 # End main
 
 
 #================================================================
+<<<<<<< HEAD
 # void print_int(int a1)
 # Prints the integer in a1.
 # args:
 #   a1 = integer to print
+=======
+# void print_int(int a0)
+# Prints the integer in a0.
+# args:
+#   a0 = integer to print
+>>>>>>> 7981a1b2a4150c44a0594279fa7d98a11977355b
 # return:
 #   void
 #================================================================
 print_int:
+<<<<<<< HEAD
     li a0 c_print_int
     ecall
     ret
@@ -59,10 +93,24 @@ print_int:
 # Prints the null-terminated string at address a1.
 # args:
 #   a1 = address of the string you want printed.
+=======
+    mv a1 a0
+    li a0 c_print_int
+    ecall
+    jr ra
+
+
+#================================================================
+# void print_str(char *a0)
+# Prints the null-terminated string at address a0.
+# args:
+#   a0 = address of the string you want printed.
+>>>>>>> 7981a1b2a4150c44a0594279fa7d98a11977355b
 # return:
 #   void
 #================================================================
 print_str:
+<<<<<<< HEAD
     li a0 c_print_str
     ecall
     ret
@@ -87,10 +135,39 @@ atoi:
 # Allocates a1 bytes onto the heap.
 # args:
 #   a1 = Number of bytes you want to allocate.
+=======
+    mv a1 a0
+    li a0 c_print_str
+    ecall
+    jr ra
+
+
+#================================================================
+# int atoi(char* a0)
+# Returns the integer version of the string at address a0.
+# args:
+#   a0 = address of the string you want to turn into an integer.
+# return:
+#   a0 = Integer representation of string
+#================================================================
+atoi:
+    mv a1 a0
+    li a0 c_atoi
+    ecall
+    jr ra
+
+
+#================================================================
+# void *sbrk(int a0)
+# Allocates a0 bytes onto the heap.
+# args:
+#   a0 = Number of bytes you want to allocate.
+>>>>>>> 7981a1b2a4150c44a0594279fa7d98a11977355b
 # return:
 #   a0 = Pointer to the start of the allocated memory
 #================================================================
 sbrk:
+<<<<<<< HEAD
     li a0 c_sbrk
     ecall
     ret
@@ -106,18 +183,45 @@ sbrk:
 #================================================================
 exit:
     li a0 c_exit
+=======
+    mv a1 a0
+    li a0 c_sbrk
+    ecall
+    jr ra
+
+
+#================================================================
+# void noreturn exit(int a0)
+# Exits the program with error code a0.
+# args:
+#   a0 = Exit code.
+# return:
+#   This program does not return.
+#================================================================
+exit:
+    mv a1 a0
+    li a0 c_exit2
+>>>>>>> 7981a1b2a4150c44a0594279fa7d98a11977355b
     ecall
 
 
 #================================================================
+<<<<<<< HEAD
 # void print_char(char a1)
 # Prints the ASCII character in a1 to the console.
 # args:
 #   a1 = character to print
+=======
+# void print_char(char a0)
+# Prints the ASCII character in a0 to the console.
+# args:
+#   a0 = character to print
+>>>>>>> 7981a1b2a4150c44a0594279fa7d98a11977355b
 # return:
 #   void
 #================================================================
 print_char:
+<<<<<<< HEAD
     li a0 c_print_char
     ecall
     ret
@@ -129,10 +233,25 @@ print_char:
 # args:
 #   a1 = filepath
 #   a2 = permissions (0, 1, 2, 3, 4, 5 = r, w, a, r+, w+, a+)
+=======
+    mv a1 a0
+    li a0 c_print_char
+    ecall
+    jr ra
+
+
+#================================================================
+# int fopen(char *a0, int a1)
+# Opens file with name a0 with permissions a1.
+# args:
+#   a0 = filepath
+#   a1 = permissions (0, 1, 2, 3, 4, 5 = r, w, a, r+, w+, a+)
+>>>>>>> 7981a1b2a4150c44a0594279fa7d98a11977355b
 # return:
 #   a0 = file descriptor
 #================================================================
 fopen:
+<<<<<<< HEAD
     li a0 c_openFile
     ecall
     #FOPEN_RETURN_HOOK
@@ -146,10 +265,28 @@ fopen:
 #   a1 = file descriptor
 #   a2 = pointer to the buffer you want to write the read bytes to.
 #   a3 = Number of bytes to be read.
+=======
+    mv a2 a1
+    mv a1 a0
+    li a0 c_openFile
+    ecall
+    #FOPEN_RETURN_HOOK
+    jr ra
+
+
+#================================================================
+# int fread(int a0, void *a1, size_t a2)
+# Reads a2 bytes of the file into the buffer a1.
+# args:
+#   a0 = file descriptor
+#   a1 = pointer to the buffer you want to write the read bytes to.
+#   a2 = Number of bytes to be read.
+>>>>>>> 7981a1b2a4150c44a0594279fa7d98a11977355b
 # return:
 #   a0 = Number of bytes actually read.
 #================================================================
 fread:
+<<<<<<< HEAD
     li a0 c_readFile
     ecall
     #FREAD_RETURN_HOOK
@@ -180,10 +317,50 @@ fwrite:
 # Closes the file descriptor a1.
 # args:
 #   a1 = file descriptor
+=======
+    mv a3 a2
+    mv a2 a1
+    mv a1 a0
+    li a0 c_readFile
+    ecall
+    #FREAD_RETURN_HOOK
+    jr ra
+
+
+#================================================================
+# int fwrite(int a0, void *a1, size_t a2, size_t a3)
+# Writes a2 * a3 bytes from the buffer in a1 to the file descriptor a0.
+# args:
+#   a0 = file descriptor
+#   a1 = Buffer to read from
+#   a2 = Number of items to read from the buffer.
+#   a3 = Size of each item in the buffer.
+# return:
+#   a0 = Number of elements writen. If this is less than a2,
+#    it is either an error or EOF. You will also need to still flush the fd.
+#================================================================
+fwrite:
+    mv a4 a3
+    mv a3 a2
+    mv a2 a1
+    mv a1 a0
+    li a0 c_writeFile
+    ecall
+    #FWRITE_RETURN_HOOK
+    jr ra
+
+
+#================================================================
+# int fclose(int a0)
+# Closes the file descriptor a0.
+# args:
+#   a0 = file descriptor
+>>>>>>> 7981a1b2a4150c44a0594279fa7d98a11977355b
 # return:
 #   a0 = 0 on success, and EOF (-1) otherwise.
 #================================================================
 fclose:
+<<<<<<< HEAD
     li a0 c_closeFile
     ecall
     #FCLOSE_RETURN_HOOK
@@ -209,10 +386,25 @@ exit2:
 # Flushes the data to the filesystem.
 # args:
 #   a1 = file descriptor
+=======
+    mv a1 a0
+    li a0 c_closeFile
+    ecall
+    #FCLOSE_RETURN_HOOK
+    jr ra
+
+
+#================================================================
+# int fflush(int a0)
+# Flushes the data to the filesystem.
+# args:
+#   a0 = file descriptor
+>>>>>>> 7981a1b2a4150c44a0594279fa7d98a11977355b
 # return:
 #   a0 = 0 on success, and EOF (-1) otherwise.
 #================================================================
 fflush:
+<<<<<<< HEAD
     li a0 c_fflush
     ecall
     ret
@@ -223,27 +415,42 @@ fflush:
 # Returns a nonzero value if the file stream has errors, otherwise it returns 0.
 # args:
 #   a1 = file descriptor
+=======
+    mv a1 a0
+    li a0 c_fflush
+    ecall
+    jr ra
+
+
+#================================================================
+# int ferror(int a0)
+# Returns a nonzero value if the file stream has errors, otherwise it returns 0.
+# args:
+#   a0 = file descriptor
+>>>>>>> 7981a1b2a4150c44a0594279fa7d98a11977355b
 # return:
 #   a0 = Nonzero falue if the end of file is reached. 0 Otherwise.
 #================================================================
 ferror:
+    mv a1 a0
     li a0 c_ferror
     ecall
-    ret
+    jr ra
 
 
 #================================================================
-# void print_hex(int a1)
+# void print_hex(int a0)
 #
 # args:
-#   a1 = The word which will be printed as a hex value.
+#   a0 = The word which will be printed as a hex value.
 # return:
 #   void
 #================================================================
 print_hex:
+    mv a1 a0
     li a0 c_printHex
     ecall
-    ret
+    jr ra
 
 
 
@@ -263,7 +470,11 @@ malloc:
     addi a6 x0 1
     ecall
     #MALLOC_RETURN_HOOK
+<<<<<<< HEAD
     ret
+=======
+    jr ra
+>>>>>>> 7981a1b2a4150c44a0594279fa7d98a11977355b
 
 
 #================================================================
@@ -279,7 +490,11 @@ free:
     li a0 0x3CC
     addi a6 x0 4
     ecall
+<<<<<<< HEAD
     ret
+=======
+    jr ra
+>>>>>>> 7981a1b2a4150c44a0594279fa7d98a11977355b
 
 #================================================================
 # void num_alloc_blocks(int a0)
@@ -293,22 +508,37 @@ num_alloc_blocks:
     li a0, 0x3CC
     li a6, 5
     ecall
+<<<<<<< HEAD
     ret
+=======
+    jr ra
+>>>>>>> 7981a1b2a4150c44a0594279fa7d98a11977355b
 
 print_num_alloc_blocks:
     addi sp, sp -4
     sw ra 0(sp)
 
     jal num_alloc_blocks
+<<<<<<< HEAD
     mv a1 a0
     jal print_int
 
     li a1 '\n'
+=======
+    mv a0 a0
+    jal print_int
+
+    li a0 '\n'
+>>>>>>> 7981a1b2a4150c44a0594279fa7d98a11977355b
     jal print_char
 
     lw ra 0(sp)
     addi sp, sp 4
+<<<<<<< HEAD
     ret
+=======
+    jr ra
+>>>>>>> 7981a1b2a4150c44a0594279fa7d98a11977355b
 
 #================================================================
 # void print_int_array(int* a0, int a1, int a2)
@@ -350,8 +580,13 @@ inner_loop_start:
     beq s4 s2 inner_loop_end
 
     # t0 = row index * len(row) + column index
+<<<<<<< HEAD
     mul t0 s2 s3 
     add t0 t0 s4 
+=======
+    mul t0 s2 s3
+    add t0 t0 s4
+>>>>>>> 7981a1b2a4150c44a0594279fa7d98a11977355b
     slli t0 t0 2
 
     # Load matrix element
@@ -359,6 +594,7 @@ inner_loop_start:
     lw t1 0(t0)
 
     # Print matrix element
+<<<<<<< HEAD
     mv a1 t1
     jal print_int
 
@@ -366,13 +602,26 @@ inner_loop_start:
     li a1 ' '
     jal print_char
     
+=======
+    mv a0 t1
+    jal print_int
+
+    # Print whitespace
+    li a0 ' '
+    jal print_char
+
+>>>>>>> 7981a1b2a4150c44a0594279fa7d98a11977355b
 
     addi s4 s4 1
     j inner_loop_start
 
 inner_loop_end:
     # Print newline
+<<<<<<< HEAD
     li a1 '\n'
+=======
+    li a0 '\n'
+>>>>>>> 7981a1b2a4150c44a0594279fa7d98a11977355b
     jal print_char
 
     addi s3 s3 1
@@ -388,7 +637,11 @@ outer_loop_end:
     lw ra 20(sp)
     addi sp sp 24
 
+<<<<<<< HEAD
     ret
+=======
+    jr ra
+>>>>>>> 7981a1b2a4150c44a0594279fa7d98a11977355b
 
 #================================================================
 # void compare_int_array(int a0, int* a0, int* a1, int a2)
@@ -443,7 +696,11 @@ fail:
     mv s2, a3
 
     # print user supplied error message
+<<<<<<< HEAD
     mv a1, a4
+=======
+    mv a0, a4
+>>>>>>> 7981a1b2a4150c44a0594279fa7d98a11977355b
     jal print_str
 
     # print actual data
@@ -453,8 +710,13 @@ fail:
     jal print_int_array
 
     # exit with user defined error code
+<<<<<<< HEAD
     mv a1, s0
     jal exit2
+=======
+    mv a0, s0
+    jal exit
+>>>>>>> 7981a1b2a4150c44a0594279fa7d98a11977355b
 
 end:
     # Epilogue
@@ -466,4 +728,206 @@ end:
     lw ra 20(sp)
     addi sp sp 24
 
+<<<<<<< HEAD
     ret
+=======
+    jr ra
+
+
+# Shuffling registers to test calling convention
+
+randomizeCallerSavedRegs:
+    li t0 0x61C0061C
+    li t1 0x61C1161C
+    li t2 0x61C2261C
+    li t3 0x61C3361C
+    li t4 0x61C4461C
+    li t5 0x61C5561C
+    li t6 0x61C6661C
+
+    li a0 0x61C8861C
+    li a1 0x61C9961C
+    li a2 0x61Caa61C
+    li a3 0x61Cbb61C
+    li a4 0x61Ccc61C
+    li a5 0x61Cdd61C
+    li a6 0x61Cee61C
+    li a7 0x61Cff61C
+
+    jr ra
+
+randomizeCallerSavedRegsBesidesA0:
+    li t0 0x61C0061C
+    li t1 0x61C1161C
+    li t2 0x61C2261C
+    li t3 0x61C3361C
+    li t4 0x61C4461C
+    li t5 0x61C5561C
+    li t6 0x61C6661C
+
+    li a1 0x61C9961C
+    li a2 0x61Caa61C
+    li a3 0x61Cbb61C
+    li a4 0x61Ccc61C
+    li a5 0x61Cdd61C
+    li a6 0x61Cee61C
+    li a7 0x61Cff61C
+
+    jr ra
+
+randomizeCalleeSavedRegs:
+    addi sp sp -48
+    sw s0 0(sp)
+    sw s1 4(sp)
+    sw s2 8(sp)
+    sw s3 12(sp)
+    sw s4 16(sp)
+    sw s5 20(sp)
+    sw s6 24(sp)
+    sw s7 28(sp)
+    sw s8 32(sp)
+    sw s9 36(sp)
+    sw s10 40(sp)
+    sw s11 44(sp)
+    la t0 static_space_for_sp
+    sw sp 0(t0)
+
+    li s0, 0x61D0061D
+    li s1, 0x61D1161D
+    li s2, 0x61D2261D
+    li s3, 0x61D3361D
+    li s4, 0x61D4461D
+    li s5, 0x61D5561D
+    li s6, 0x61D6661D
+    li s7, 0x61D7761D
+    li s8, 0x61D8861D
+    li s9, 0x61D9961D
+    li s10, 0x61Daa61D
+    li s11, 0x61Dbb61D
+
+    jr ra
+
+checkCalleeSavedRegs:
+    li t0, 0x61D0061D
+    bne s0, t0, savereg_error
+    li t0, 0x61D1161D
+    bne s1, t0, savereg_error
+    li t0, 0x61D2261D
+    bne s2, t0, savereg_error
+    li t0, 0x61D3361D
+    bne s3, t0, savereg_error
+    li t0, 0x61D4461D
+    bne s4, t0, savereg_error
+    li t0, 0x61D5561D
+    bne s5, t0, savereg_error
+    li t0, 0x61D6661D
+    bne s6, t0, savereg_error
+    li t0, 0x61D7761D
+    bne s7, t0, savereg_error
+    li t0, 0x61D8861D
+    bne s8, t0, savereg_error
+    li t0, 0x61D9961D
+    bne s9, t0, savereg_error
+    li t0, 0x61Daa61D
+    bne s10, t0, savereg_error
+    li t0, 0x61Dbb61D
+    bne s11, t0, savereg_error
+    la t0 static_space_for_sp
+    lw t0 0(t0)
+    bne sp t0 savereg_error
+
+    lw s0 0(sp)
+    lw s1 4(sp)
+    lw s2 8(sp)
+    lw s3 12(sp)
+    lw s4 16(sp)
+    lw s5 20(sp)
+    lw s6 24(sp)
+    lw s7 28(sp)
+    lw s8 32(sp)
+    lw s9 36(sp)
+    lw s10 40(sp)
+    lw s11 44(sp)
+    addi sp sp 48
+    jr ra
+
+randomizeCalleeSavedRegs2:
+    addi sp sp -48
+    sw s0 0(sp)
+    sw s1 4(sp)
+    sw s2 8(sp)
+    sw s3 12(sp)
+    sw s4 16(sp)
+    sw s5 20(sp)
+    sw s6 24(sp)
+    sw s7 28(sp)
+    sw s8 32(sp)
+    sw s9 36(sp)
+    sw s10 40(sp)
+    sw s11 44(sp)
+    la t0 static_space_for_sp2
+    sw sp 0(t0)
+
+    li s0, 0x61E0061E
+    li s1, 0x61E1161E
+    li s2, 0x61E2261E
+    li s3, 0x61E3361E
+    li s4, 0x61E4461E
+    li s5, 0x61E5561E
+    li s6, 0x61E6661E
+    li s7, 0x61E7761E
+    li s8, 0x61E8861E
+    li s9, 0x61E9961E
+    li s10, 0x61Eaa61E
+    li s11, 0x61Ebb61E
+
+    jr ra
+
+checkCalleeSavedRegs2:
+    li t0, 0x61D0061D
+    bne s0, t0, savereg_error
+    li t0, 0x61D1161D
+    bne s1, t0, savereg_error
+    li t0, 0x61D2261D
+    bne s2, t0, savereg_error
+    li t0, 0x61D3361D
+    bne s3, t0, savereg_error
+    li t0, 0x61D4461D
+    bne s4, t0, savereg_error
+    li t0, 0x61D5561D
+    bne s5, t0, savereg_error
+    li t0, 0x61D6661D
+    bne s6, t0, savereg_error
+    li t0, 0x61D7761D
+    bne s7, t0, savereg_error
+    li t0, 0x61D8861D
+    bne s8, t0, savereg_error
+    li t0, 0x61D9961D
+    bne s9, t0, savereg_error
+    li t0, 0x61Daa61D
+    bne s10, t0, savereg_error
+    li t0, 0x61Dbb61D
+    bne s11, t0, savereg_error
+    la t0 static_space_for_sp2
+    lw t0 0(t0)
+    bne sp t0 savereg_error
+
+    lw s0 0(sp)
+    lw s1 4(sp)
+    lw s2 8(sp)
+    lw s3 12(sp)
+    lw s4 16(sp)
+    lw s5 20(sp)
+    lw s6 24(sp)
+    lw s7 28(sp)
+    lw s8 32(sp)
+    lw s9 36(sp)
+    lw s10 40(sp)
+    lw s11 44(sp)
+    addi sp sp 48
+    jr ra
+
+savereg_error:
+    li a0 100
+    jal exit
+>>>>>>> 7981a1b2a4150c44a0594279fa7d98a11977355b

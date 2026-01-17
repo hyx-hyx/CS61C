@@ -15,19 +15,18 @@
 # Returns:
 #   a0 (int*)  is the pointer to the matrix in memory
 # Exceptions:
-# - If malloc returns an error,
-#   this function terminates the program with error code 88.
-# - If you receive an fopen error or eof, 
-#   this function terminates the program with error code 90.
-# - If you receive an fread error or eof,
-#   this function terminates the program with error code 91.
-# - If you receive an fclose error or eof,
-#   this function terminates the program with error code 92.
+#   - If malloc returns an error,
+#     this function terminates the program with error code 26
+#   - If you receive an fopen error or eof,
+#     this function terminates the program with error code 27
+#   - If you receive an fclose error or eof,
+#     this function terminates the program with error code 28
+#   - If you receive an fread error or eof,
+#     this function terminates the program with error code 29
 # ==============================================================================
 read_matrix:
 
     # Prologue
-	
 
 
 
@@ -39,4 +38,4 @@ read_matrix:
     # Epilogue
 
 
-    ret
+    jr ra

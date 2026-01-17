@@ -15,12 +15,12 @@
 # Returns:
 #   None
 # Exceptions:
-# - If you receive an fopen error or eof,
-#   this function terminates the program with error code 93.
-# - If you receive an fwrite error or eof,
-#   this function terminates the program with error code 94.
-# - If you receive an fclose error or eof,
-#   this function terminates the program with error code 95.
+#   - If you receive an fopen error or eof,
+#     this function terminates the program with error code 27
+#   - If you receive an fclose error or eof,
+#     this function terminates the program with error code 28
+#   - If you receive an fwrite error or eof,
+#     this function terminates the program with error code 30
 # ==============================================================================
 write_matrix:
 
@@ -37,4 +37,4 @@ write_matrix:
     # Epilogue
 
 
-    ret
+    jr ra

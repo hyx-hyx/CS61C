@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # fa20-proj2-starter
 
 ```
@@ -26,3 +27,6 @@
 
 
 ## Here's what I did in project 2:
+=======
+# 61C Project 2: CS61Classify
+>>>>>>> 7981a1b2a4150c44a0594279fa7d98a11977355b

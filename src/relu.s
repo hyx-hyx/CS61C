@@ -40,6 +40,12 @@ loop_end:
 
 
     # Epilogue
+<<<<<<< HEAD
     lw ra 0(sp)
     addi sp,sp, 4
 	ret
+=======
+
+
+    jr ra
+>>>>>>> 7981a1b2a4150c44a0594279fa7d98a11977355b
