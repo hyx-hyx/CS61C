@@ -6,10 +6,6 @@
 #define c_print_str 4
 #define c_atoi 5
 #define c_sbrk 9
-<<<<<<< HEAD
-#define c_exit 10
-=======
->>>>>>> 7981a1b2a4150c44a0594279fa7d98a11977355b
 #define c_print_char 11
 #define c_openFile 13
 #define c_readFile 14
@@ -22,11 +18,7 @@
 #define c_printHex 34
 
 # ecall wrappers
-<<<<<<< HEAD
-.globl print_int, print_str, atoi, sbrk, exit, print_char, fopen, fread, fwrite, fclose, exit2, fflush, ferror, print_hex
-=======
 .globl print_int, print_str, atoi, sbrk, exit, print_char, fopen, fread, fwrite, fclose, fflush, ferror, print_hex
->>>>>>> 7981a1b2a4150c44a0594279fa7d98a11977355b
 
 # helper functions
 .globl file_error, print_int_array, malloc, free, print_num_alloc_blocks, num_alloc_blocks
@@ -34,10 +26,6 @@
 # unittest helper functions
 .globl compare_int_array
 
-<<<<<<< HEAD
-.data
-error_string: .string "This library file should not be directly called!"
-=======
 # Calling Convention Functions
 .globl randomizeCallerSavedRegs, randomizeCallerSavedRegsBesidesA0, randomizeCalleeSavedRegs, checkCalleeSavedRegs, randomizeCalleeSavedRegs2, checkCalleeSavedRegs2
 
@@ -47,53 +35,26 @@ error_string: .string "This library file should not be directly called!"
 static_space_for_sp2: .word 0 0 0
 error_string2: .string "This library file should not be directly called!"
 
->>>>>>> 7981a1b2a4150c44a0594279fa7d98a11977355b
 
 .text
 # Exits if you run this file
 main:
-<<<<<<< HEAD
-    la a1 error_string
-    jal print_str
-    li a1 1
-    jal exit2
-=======
     la a0 error_string
     jal print_str
     li a0 1
     jal exit
->>>>>>> 7981a1b2a4150c44a0594279fa7d98a11977355b
 # End main
 
 
 #================================================================
-<<<<<<< HEAD
-# void print_int(int a1)
-# Prints the integer in a1.
-# args:
-#   a1 = integer to print
-=======
 # void print_int(int a0)
 # Prints the integer in a0.
 # args:
 #   a0 = integer to print
->>>>>>> 7981a1b2a4150c44a0594279fa7d98a11977355b
 # return:
 #   void
 #================================================================
 print_int:
-<<<<<<< HEAD
-    li a0 c_print_int
-    ecall
-    ret
-
-
-#================================================================
-# void print_str(char *a1)
-# Prints the null-terminated string at address a1.
-# args:
-#   a1 = address of the string you want printed.
-=======
     mv a1 a0
     li a0 c_print_int
     ecall
@@ -105,37 +66,10 @@ print_int:
 # Prints the null-terminated string at address a0.
 # args:
 #   a0 = address of the string you want printed.
->>>>>>> 7981a1b2a4150c44a0594279fa7d98a11977355b
 # return:
 #   void
 #================================================================
 print_str:
-<<<<<<< HEAD
-    li a0 c_print_str
-    ecall
-    ret
-
-
-#================================================================
-# int atoi(char* a1)
-# Returns the integer version of the string at address a1.
-# args:
-#   a1 = address of the string you want to turn into an integer.
-# return:
-#   a0 = Integer representation of string 
-#================================================================
-atoi:
-    li a0 c_atoi
-    ecall
-    ret
-
-
-#================================================================
-# void *sbrk(int a1)
-# Allocates a1 bytes onto the heap.
-# args:
-#   a1 = Number of bytes you want to allocate.
-=======
     mv a1 a0
     li a0 c_print_str
     ecall
@@ -162,28 +96,10 @@ atoi:
 # Allocates a0 bytes onto the heap.
 # args:
 #   a0 = Number of bytes you want to allocate.
->>>>>>> 7981a1b2a4150c44a0594279fa7d98a11977355b
 # return:
 #   a0 = Pointer to the start of the allocated memory
 #================================================================
 sbrk:
-<<<<<<< HEAD
-    li a0 c_sbrk
-    ecall
-    ret
-
-
-#================================================================
-# void noreturn exit()
-# Exits the program with a zero exit code.
-# args:
-#   None
-# return:
-#   No Return
-#================================================================
-exit:
-    li a0 c_exit
-=======
     mv a1 a0
     li a0 c_sbrk
     ecall
@@ -201,39 +117,18 @@ exit:
 exit:
     mv a1 a0
     li a0 c_exit2
->>>>>>> 7981a1b2a4150c44a0594279fa7d98a11977355b
     ecall
 
 
 #================================================================
-<<<<<<< HEAD
-# void print_char(char a1)
-# Prints the ASCII character in a1 to the console.
-# args:
-#   a1 = character to print
-=======
 # void print_char(char a0)
 # Prints the ASCII character in a0 to the console.
 # args:
 #   a0 = character to print
->>>>>>> 7981a1b2a4150c44a0594279fa7d98a11977355b
 # return:
 #   void
 #================================================================
 print_char:
-<<<<<<< HEAD
-    li a0 c_print_char
-    ecall
-    ret
-
-
-#================================================================
-# int fopen(char *a1, int a2)
-# Opens file with name a1 with permissions a2.
-# args:
-#   a1 = filepath
-#   a2 = permissions (0, 1, 2, 3, 4, 5 = r, w, a, r+, w+, a+)
-=======
     mv a1 a0
     li a0 c_print_char
     ecall
@@ -246,26 +141,10 @@ print_char:
 # args:
 #   a0 = filepath
 #   a1 = permissions (0, 1, 2, 3, 4, 5 = r, w, a, r+, w+, a+)
->>>>>>> 7981a1b2a4150c44a0594279fa7d98a11977355b
 # return:
 #   a0 = file descriptor
 #================================================================
 fopen:
-<<<<<<< HEAD
-    li a0 c_openFile
-    ecall
-    #FOPEN_RETURN_HOOK
-    ret
-
-
-#================================================================
-# int fread(int a1, void *a2, size_t a3)
-# Reads a3 bytes of the file into the buffer a2.
-# args:
-#   a1 = file descriptor
-#   a2 = pointer to the buffer you want to write the read bytes to.
-#   a3 = Number of bytes to be read.
-=======
     mv a2 a1
     mv a1 a0
     li a0 c_openFile
@@ -281,43 +160,10 @@ fopen:
 #   a0 = file descriptor
 #   a1 = pointer to the buffer you want to write the read bytes to.
 #   a2 = Number of bytes to be read.
->>>>>>> 7981a1b2a4150c44a0594279fa7d98a11977355b
 # return:
 #   a0 = Number of bytes actually read.
 #================================================================
 fread:
-<<<<<<< HEAD
-    li a0 c_readFile
-    ecall
-    #FREAD_RETURN_HOOK
-    ret
-
-
-#================================================================
-# int fwrite(int a1, void *a2, size_t a3, size_t a4)
-# Writes a3 * a4 bytes from the buffer in a2 to the file descriptor a1.
-# args:
-#   a1 = file descriptor
-#   a2 = Buffer to read from
-#   a3 = Number of items to read from the buffer.
-#   a4 = Size of each item in the buffer.
-# return:
-#   a0 = Number of elements writen. If this is less than a3,
-#    it is either an error or EOF. You will also need to still flush the fd.
-#================================================================
-fwrite:
-    li a0 c_writeFile
-    ecall
-    #FWRITE_RETURN_HOOK
-    ret
-
-
-#================================================================
-# int fclose(int a1)
-# Closes the file descriptor a1.
-# args:
-#   a1 = file descriptor
-=======
     mv a3 a2
     mv a2 a1
     mv a1 a0
@@ -355,38 +201,10 @@ fwrite:
 # Closes the file descriptor a0.
 # args:
 #   a0 = file descriptor
->>>>>>> 7981a1b2a4150c44a0594279fa7d98a11977355b
 # return:
 #   a0 = 0 on success, and EOF (-1) otherwise.
 #================================================================
 fclose:
-<<<<<<< HEAD
-    li a0 c_closeFile
-    ecall
-    #FCLOSE_RETURN_HOOK
-    ret
-
-
-#================================================================
-# void noreturn exit2(int a1)
-# Exits the program with error code a1.
-# args:
-#   a1 = Exit code.
-# return:
-#   This program does not return.
-#================================================================
-exit2:
-    li a0 c_exit2
-    ecall
-    ret
-
-
-#================================================================
-# int fflush(int a1)
-# Flushes the data to the filesystem.
-# args:
-#   a1 = file descriptor
-=======
     mv a1 a0
     li a0 c_closeFile
     ecall
@@ -399,23 +217,10 @@ exit2:
 # Flushes the data to the filesystem.
 # args:
 #   a0 = file descriptor
->>>>>>> 7981a1b2a4150c44a0594279fa7d98a11977355b
 # return:
 #   a0 = 0 on success, and EOF (-1) otherwise.
 #================================================================
 fflush:
-<<<<<<< HEAD
-    li a0 c_fflush
-    ecall
-    ret
-
-
-#================================================================
-# int ferror(int a1)
-# Returns a nonzero value if the file stream has errors, otherwise it returns 0.
-# args:
-#   a1 = file descriptor
-=======
     mv a1 a0
     li a0 c_fflush
     ecall
@@ -427,7 +232,6 @@ fflush:
 # Returns a nonzero value if the file stream has errors, otherwise it returns 0.
 # args:
 #   a0 = file descriptor
->>>>>>> 7981a1b2a4150c44a0594279fa7d98a11977355b
 # return:
 #   a0 = Nonzero falue if the end of file is reached. 0 Otherwise.
 #================================================================
@@ -470,11 +274,7 @@ malloc:
     addi a6 x0 1
     ecall
     #MALLOC_RETURN_HOOK
-<<<<<<< HEAD
-    ret
-=======
     jr ra
->>>>>>> 7981a1b2a4150c44a0594279fa7d98a11977355b
 
 
 #================================================================
@@ -490,11 +290,7 @@ free:
     li a0 0x3CC
     addi a6 x0 4
     ecall
-<<<<<<< HEAD
-    ret
-=======
     jr ra
->>>>>>> 7981a1b2a4150c44a0594279fa7d98a11977355b
 
 #================================================================
 # void num_alloc_blocks(int a0)
@@ -508,37 +304,22 @@ num_alloc_blocks:
     li a0, 0x3CC
     li a6, 5
     ecall
-<<<<<<< HEAD
-    ret
-=======
     jr ra
->>>>>>> 7981a1b2a4150c44a0594279fa7d98a11977355b
 
 print_num_alloc_blocks:
     addi sp, sp -4
     sw ra 0(sp)
 
     jal num_alloc_blocks
-<<<<<<< HEAD
-    mv a1 a0
-    jal print_int
-
-    li a1 '\n'
-=======
     mv a0 a0
     jal print_int
 
     li a0 '\n'
->>>>>>> 7981a1b2a4150c44a0594279fa7d98a11977355b
     jal print_char
 
     lw ra 0(sp)
     addi sp, sp 4
-<<<<<<< HEAD
-    ret
-=======
     jr ra
->>>>>>> 7981a1b2a4150c44a0594279fa7d98a11977355b
 
 #================================================================
 # void print_int_array(int* a0, int a1, int a2)
@@ -580,13 +361,8 @@ inner_loop_start:
     beq s4 s2 inner_loop_end
 
     # t0 = row index * len(row) + column index
-<<<<<<< HEAD
-    mul t0 s2 s3 
-    add t0 t0 s4 
-=======
     mul t0 s2 s3
     add t0 t0 s4
->>>>>>> 7981a1b2a4150c44a0594279fa7d98a11977355b
     slli t0 t0 2
 
     # Load matrix element
@@ -594,15 +370,6 @@ inner_loop_start:
     lw t1 0(t0)
 
     # Print matrix element
-<<<<<<< HEAD
-    mv a1 t1
-    jal print_int
-
-    # Print whitespace
-    li a1 ' '
-    jal print_char
-    
-=======
     mv a0 t1
     jal print_int
 
@@ -610,18 +377,13 @@ inner_loop_start:
     li a0 ' '
     jal print_char
 
->>>>>>> 7981a1b2a4150c44a0594279fa7d98a11977355b
 
     addi s4 s4 1
     j inner_loop_start
 
 inner_loop_end:
     # Print newline
-<<<<<<< HEAD
-    li a1 '\n'
-=======
     li a0 '\n'
->>>>>>> 7981a1b2a4150c44a0594279fa7d98a11977355b
     jal print_char
 
     addi s3 s3 1
@@ -637,11 +399,7 @@ outer_loop_end:
     lw ra 20(sp)
     addi sp sp 24
 
-<<<<<<< HEAD
-    ret
-=======
     jr ra
->>>>>>> 7981a1b2a4150c44a0594279fa7d98a11977355b
 
 #================================================================
 # void compare_int_array(int a0, int* a0, int* a1, int a2)
@@ -696,11 +454,7 @@ fail:
     mv s2, a3
 
     # print user supplied error message
-<<<<<<< HEAD
-    mv a1, a4
-=======
     mv a0, a4
->>>>>>> 7981a1b2a4150c44a0594279fa7d98a11977355b
     jal print_str
 
     # print actual data
@@ -710,13 +464,8 @@ fail:
     jal print_int_array
 
     # exit with user defined error code
-<<<<<<< HEAD
-    mv a1, s0
-    jal exit2
-=======
     mv a0, s0
     jal exit
->>>>>>> 7981a1b2a4150c44a0594279fa7d98a11977355b
 
 end:
     # Epilogue
@@ -728,9 +477,6 @@ end:
     lw ra 20(sp)
     addi sp sp 24
 
-<<<<<<< HEAD
-    ret
-=======
     jr ra
 
 
@@ -930,4 +676,3 @@ checkCalleeSavedRegs2:
 savereg_error:
     li a0 100
     jal exit
->>>>>>> 7981a1b2a4150c44a0594279fa7d98a11977355b
