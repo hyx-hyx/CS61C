@@ -13,7 +13,6 @@
             "stopOnEntry": true,
             "stopAtBreakpoints": true,
             "openViews": [
-                "Memory"
             ],
             "ledMatrixSize": {
                 "x": 10,

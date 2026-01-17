@@ -4,19 +4,19 @@
 # ==============================================================================
 # FUNCTION: Performs an inplace element-wise ReLU on an array of ints
 # Arguments:
-# 	a0 (int*) is the pointer to the array
-#	a1 (int)  is the # of elements in the array
+#   a0 (int*) is the pointer to the array
+#   a1 (int)  is the # of elements in the array
 # Returns:
-#	None
+#   None
 # Exceptions:
-# - If the length of the vector is less than 1,
-#   this function terminates the program with error code 78.
+#   - If the length of the array is less than 1,
+#     this function terminates the program with error code 36
 # ==============================================================================
 relu:
-    bge a1,1,begin
-    li a1,78
-    li a0,17
-    ecall
+    li t0,1
+    bge a1,t0,begin
+    li a0,36
+    j exit
     
 begin:
     # Prologue
@@ -40,12 +40,6 @@ loop_end:
 
 
     # Epilogue
-<<<<<<< HEAD
     lw ra 0(sp)
     addi sp,sp, 4
-	ret
-=======
-
-
-    jr ra
->>>>>>> 7981a1b2a4150c44a0594279fa7d98a11977355b
+	jr ra

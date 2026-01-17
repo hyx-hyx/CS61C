@@ -2,20 +2,20 @@
 
 .text
 # =======================================================
-# FUNCTION: Dot product of 2 int vectors
+# FUNCTION: Dot product of 2 int arrays
 # Arguments:
-#   a0 (int*) is the pointer to the start of v0
-#   a1 (int*) is the pointer to the start of v1
-#   a2 (int)  is the length of the vectors
-#   a3 (int)  is the stride of v0
-#   a4 (int)  is the stride of v1
+#   a0 (int*) is the pointer to the start of arr0
+#   a1 (int*) is the pointer to the start of arr1
+#   a2 (int)  is the number of elements to use
+#   a3 (int)  is the stride of arr0
+#   a4 (int)  is the stride of arr1
 # Returns:
-#   a0 (int)  is the dot product of v0 and v1
+#   a0 (int)  is the dot product of arr0 and arr1
 # Exceptions:
-# - If the length of the vector is less than 1,
-#   this function terminates the program with error code 75.
-# - If the stride of either vector is less than 1,
-#   this function terminates the program with error code 76.
+#   - If the number of elements to use is less than 1,
+#     this function terminates the program with error code 36
+#   - If the stride of either array is less than 1,
+#     this function terminates the program with error code 37
 # =======================================================
 dot:
     li t0,1
@@ -24,14 +24,11 @@ dot:
     blt a4,t0,error_handler2
     j begin
 error_handler1:
-    li a1,75
-    j error
+    li a0,36
+    j exit
 error_handler2:
-    li a1,76
-    j error
-error:
-    li a0,17
-    ecall
+    li a0,37
+    j exit
 
 begin:
     # Prologue

@@ -4,19 +4,20 @@
 # =================================================================
 # FUNCTION: Given an int return its absolute value.
 # Arguments:
-# 	a0 (int) is input integer
+#   a0 (int*) is a pointer to the input integer
 # Returns:
-#	a0 (int) the absolute value of the input
+#   None
 # =================================================================
 abs:
-    # Prologue
+  # Load number from memory
+  lw t0 0(a0)
+  bge t0, zero, done
 
-    # return 0
-     # branch if positive
-    bge a0, x0, done
-    # invert a if negative
-    sub a0, x0, a0
+  # Negate a0
+  sub t0, x0, t0
+
+  # Store number back to memory
+  sw t0 0(a0)
+
 done:
-    # Epilogue
-
-    ret
+  jr ra

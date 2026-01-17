@@ -2,20 +2,25 @@
 
 .text
 # =================================================================
-# FUNCTION: Given a int vector, return the index of the largest
-#	element. If there are multiple, return the one
-#	with the smallest index.
+# FUNCTION: Given a int array, return the index of the largest
+#   element. If there are multiple, return the one
+#   with the smallest index.
 # Arguments:
-# 	a0 (int*) is the pointer to the start of the vector
-#	a1 (int)  is the # of elements in the vector
+#   a0 (int*) is the pointer to the start of the array
+#   a1 (int)  is the # of elements in the array
 # Returns:
-#	a0 (int)  is the first index of the largest element
+#   a0 (int)  is the first index of the largest element
 # Exceptions:
-# - If the length of the vector is less than 1,
-#   this function terminates the program with error code 77.
+#   - If the length of the array is less than 1,
+#     this function terminates the program with error code 36
 # =================================================================
 argmax:
+    li t0,1
+    bge a1,t0,begin
+    li a0 36
+    j exit
 
+begin:
     # Prologue
     addi sp,sp, -4
     sw ra 0(sp)
@@ -42,4 +47,4 @@ loop_end:
     lw ra 0(sp)
     addi sp,sp, 4
 
-    ret
+    jr ra
