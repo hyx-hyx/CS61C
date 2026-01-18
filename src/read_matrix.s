@@ -1,10 +1,4 @@
 .globl read_matrix
-# .import utils.s
-.data
-# filename: .asciiz "/home/hyx/CS61C/fa20-proj2-starter/tests/read-matrix-1/input.bin"
-# .align 4
-dimension: .word -1 -1
-buffer:
 .text
 # ==============================================================================
 # FUNCTION: Allocates memory and reads in a binary file as a matrix of integers
@@ -41,46 +35,40 @@ read_matrix:
     mv s1,a1        # save int* address of row
     mv s2,a2        # save int* address of column
 
-    # la a0,filename
     li a1,0
     call fopen
+    mv s0,a0        # sava s0=fd
 
     li t0,-1              # error_check
-    bne a0,t0,call_fread  
+    bne a0,t0,get_row_col  
     li a0,27
     j exit
 
-call_fread:
-    
-    la a1,dimension
-    li a2,8
-    mv s0,a0              # s0=fd
+get_row_col:
+    mv a0,s0
+    mv a1,s1
+    li a2,4
     call fread  
 
-    li a2,8
-    beq a2,a0,pre_malloc  # error_check
-    li a0,29
-    j exit
+    mv a0,s0
+    mv a1,s2
+    li a2,4
+    call fread  
 
 pre_malloc:
-    la t0,dimension     # get dimension address
-    lw t1,0(t0)      # get row
-    lw t2,4(t0)      # get col
-    sw t1,0(s1)      # set row to *a1
-    sw t2,0(s2)      # set col to *a2
+    lw t1,0(s1)      # get row
+    lw t2,0(s2)      # get col
 
-    mul s3,t1,t2   # set s2= # of bytes
+    mul s3,t1,t2   # set s3= # of bytes
     slli a0,s3,2
 
     call malloc
 
-    bne a0,x0,begin_read  #error_check
+    bne a0,x0,get_data  #error_check
     li a0,26
     j exit
 
-begin_read:
-    
-call_fread_again:
+get_data:
     slli a2,s3,2
     mv s2,a2
     mv a1,a0           #a1=the address of the matrix in memory
