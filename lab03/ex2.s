@@ -42,6 +42,10 @@ main:
     la s1, source
     la s2, dest
 loop:
+    # k: t0
+    # sum: s0
+    # source: s1
+    # dest: s2
     slli s3, t0, 2
     add t1, s1, s3
     lw t2, 0(t1)
