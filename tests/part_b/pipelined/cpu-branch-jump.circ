@@ -141,7 +141,7 @@
       <a name="valign" val="base"/>
     </tool>
   </lib>
-  <lib desc="file#../../../harnesses/test_harness.circ" name="7"/>
+  <lib desc="file#/home/hyx/CS61C/fa20-proj3-starter/harnesses/test_harness.circ" name="7"/>
   <main name="run_main"/>
   <options>
     <a name="gateUndefined" val="ignore"/>
