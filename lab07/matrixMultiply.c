@@ -13,6 +13,8 @@
    unfairly bias results (lower cases in switches must run through more
    case statements on each iteration).
 */
+// cji=Bjk*Aki
+// good: kji,jki(best) bad:ikj(worst),kij
 void multMat1( int n, float *A, float *B, float *C ) {
     int i,j,k;
     /* This is ijk loop order. */
